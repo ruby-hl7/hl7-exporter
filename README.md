@@ -1,4 +1,4 @@
-# Hl7::Exporter
+# HL7::Exporter
 
 A simple library to export 'ruby-hl7' messages into different formats.
 
