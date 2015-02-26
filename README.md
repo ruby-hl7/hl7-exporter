@@ -19,18 +19,19 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-exporter = HL7::Exporter
+cvs_exporter = HL7::Exporter::Csv
 message = HL7::Message.parse('hl7_file.dat')
 
 # In progress:
-exporter.csv(message) # returns the data
+cvs_exporter.export(message) # returns the data
 
 
 # Future implementation:
-exporter.csv(message, template)
+cvs_exporter.export(message, template)
 
 # I'm also thinking about this one:
-exporter.json(message)
+json_exporter = HL7::Exporter::Json
+json_exporter.export(message)
 ```
 
 ## Contributing

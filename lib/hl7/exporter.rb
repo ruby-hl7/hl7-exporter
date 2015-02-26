@@ -8,19 +8,8 @@ module HL7
       @message = message
     end
 
-    def csv
-      template
-    end
-
-    private
-    def template
-      "Name: #{data[:patient_name]}\nBID: #{data[:patient_dob]}"
-    end
-
-    def data
-      { patient_name: message[:PID].patient_name,
-        patient_dob: message[:PID].patient_dob
-      }
+    def export
+      raise "Not implemented"
     end
   end
 end
