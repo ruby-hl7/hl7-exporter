@@ -4,3 +4,8 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'ruby-hl7'
+
+group :development do
+  gem 'byebug'
+end
+
