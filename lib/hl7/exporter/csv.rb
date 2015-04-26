@@ -6,7 +6,10 @@ module HL7
 
     private
     def template
-      "Name: #{data[:patient_name]}\nDOB: #{data[:patient_dob]}"
+      "Name: #{data[:patient_name]}\n" +
+      "DOB: #{data[:patient_dob]}\n" +
+      "Nick: #{nick_name}\n"+
+      "Sex: #{sex}\n"
     end
 
     def getDate(date)
@@ -15,13 +18,25 @@ module HL7
     end
 
     def patient_name
-      patient_data = message[:PID].patient_name.split("^")
       "#{patient_data[1]} #{patient_data[0]}"
+    end
+
+    def nick_name
+      "#{patient_data[4]}"
+    end
+
+    def sex
+      message[:PID].admin_sex ? 'Female' : 'Male'
+    end
+
+    def patient_data
+      @patient_name_data ||= message[:PID].patient_name.split("^")
     end
 
     def data
       { patient_name: patient_name,
-        patient_dob:  getDate(message[:PID].patient_dob)
+        patient_dob:  getDate(message[:PID].patient_dob),
+        nick_name:  nick_name,
       }
     end
   end

@@ -6,7 +6,8 @@ describe HL7::Exporter::Csv do
   let(:exporter) { HL7::Exporter::Csv.new(message) }
   subject(:csv) { exporter.export.split("\n") }
 
-  it { expect(csv).not_to be_empty }
   it { expect(csv[0]).to eq "Name: FirstName LastName" }
   it { expect(csv[1]).to eq "DOB: 1976/02/28"  }
+  it { expect(csv[2]).to eq "Nick: NickName"  }
+  it { expect(csv[3]).to eq "Sex: Female"  }
 end
