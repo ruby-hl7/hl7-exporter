@@ -7,5 +7,7 @@ gem 'ruby-hl7'
 
 group :development do
   gem 'byebug'
+  gem 'pry'
+  gem 'looksee'
 end
 
