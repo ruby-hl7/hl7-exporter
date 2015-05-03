@@ -1,4 +1,4 @@
-require "hl7/exporter/version"
+require_relative "exporter/version"
 
 module HL7
   class Exporter
