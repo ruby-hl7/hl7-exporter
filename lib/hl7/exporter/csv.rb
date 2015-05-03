@@ -6,6 +6,7 @@ module HL7
 
     private
     def template
+      "Sending Facility: #{data[:sending_facility]}\n" +
       "Name: #{data[:patient_name]}\n" +
       "DOB: #{data[:patient_dob]}\n" +
       "Nick: #{nick_name}\n"+
@@ -33,8 +34,14 @@ module HL7
       @patient_name_data ||= message[:PID].patient_name.split("^")
     end
 
+    def sending_facility
+      message[:MSH].sending_facility || ''
+    end
+
     def data
-      { patient_name: patient_name,
+      {
+        sending_facility: sending_facility,
+        patient_name: patient_name,
         patient_dob:  getDate(message[:PID].patient_dob),
         nick_name:  nick_name,
       }
