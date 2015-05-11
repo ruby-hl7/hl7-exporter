@@ -1,1 +1,3 @@
+MSH|^~\&|SOURCE|TEST_LAB_INC|HEALTH|382715520|2014100914484648||ORU^R01|0129938170710091448|P|2.3|
 PID|1||333||LastName^FirstName^MiddleInitial^SR^NickName||19760228|F||2106-3^White^HL70005^CAUC^Caucasian^L||||||
+OBR|1|Placer1234|Filler56789|TestID^TestName^IDSystem|||ObservationDate/Time|||||||SpecimenReceivedDate/Time||||||||ResultChangeDate/Time|||ResultStatus(From HL7 table 0123)
