@@ -1,16 +1,17 @@
 module HL7
   class Exporter::Csv < HL7::Exporter
     def export
-      template
+      template % data
     end
 
     private
     def template
-      "Sending Facility: #{data[:sending_facility]}\n" +
-      "Name: #{data[:patient_name]}\n" +
-      "DOB: #{data[:patient_dob]}\n" +
-      "Nick: #{nick_name}\n"+
-      "Sex: #{sex}\n"
+%[Sending Facility: %{sending_facility}
+Name: %{patient_name}
+DOB: %{patient_dob}
+Nick: %{nick_name}
+Sex: %{sex}
+]
     end
 
     def getDate(date)
@@ -44,6 +45,7 @@ module HL7
         patient_name: patient_name,
         patient_dob:  getDate(message[:PID].patient_dob),
         nick_name:  nick_name,
+        sex: sex,
       }
     end
   end
