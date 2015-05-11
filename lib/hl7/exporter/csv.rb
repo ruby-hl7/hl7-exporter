@@ -11,6 +11,7 @@ Name: %{patient_name}
 DOB: %{patient_dob}
 Nick: %{nick_name}
 Sex: %{sex}
+test, result, flag, units, reference interval
 ]
     end
 
