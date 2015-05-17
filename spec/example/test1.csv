@@ -4,3 +4,6 @@ DOB: 1976/02/28
 Nick: NickName
 Sex: Female
 test, result, flag, units, reference interval
+Cholesterol Total, 232, H, mg/dL, 100-199
+Triglycerides, 179, H, mg/dL, 0-149
+HDL Cholesterol, 40, , mg/dL, >39
