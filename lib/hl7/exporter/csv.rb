@@ -16,6 +16,11 @@ test, result, flag, units, reference interval
 ]
     end
 
+    def obr_row_template(observation)
+      "#{observation.name}, #{observation.result}, #{observation.flags}, " +
+      "#{observation.units}, #{observation.reference_range}"
+    end
+
     def getDate(date)
       date = Date.parse date
       date.strftime("%Y/%m/%d")
@@ -44,34 +49,13 @@ test, result, flag, units, reference interval
 
     def test_results
       message[:OBR].children.map{ |obr|
-        [
-          observation_name(obr),
-          observation_result(obr),
-          observation_flags(obr),
-          observation_units(obr),
-          observation_reference_range(obr),
-        ].join(", ")
+        observation_row(obr)
       }.join("\n")
     end
 
-    def observation_name(obr)
-      obr.observation_id.split('^')[1].sub(",","")
-    end
-
-    def observation_result(obr)
-      obr.observation_value
-    end
-
-    def observation_units(obr)
-      obr.units
-    end
-
-    def observation_flags(obr)
-      obr.abnormal_flags
-    end
-
-    def observation_reference_range(obr)
-      obr.references_range
+    def observation_row(obr)
+      observation = HL7::Exporter::Observation.new(obr)
+      obr_row_template(observation)
     end
 
     def data

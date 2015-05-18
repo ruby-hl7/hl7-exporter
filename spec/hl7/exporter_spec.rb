@@ -21,4 +21,5 @@ describe HL7::Exporter::Csv do
   it { expect(csv[4]).to eq "Sex: Female"  }
   it { expect(csv[5]).to eq "test, result, flag, units, reference interval"  }
   it { expect(csv[6]).to eq "Cholesterol Total, 232, H, mg/dL, 100-199" }
+  it { expect(csv[8]).to include "Cholesterol" }
 end
