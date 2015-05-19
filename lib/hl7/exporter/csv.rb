@@ -26,22 +26,6 @@ test, result, flag, units, reference interval
       date.strftime("%Y/%m/%d")
     end
 
-    def patient_name
-      "#{patient_data[1]} #{patient_data[0]}"
-    end
-
-    def nick_name
-      "#{patient_data[4]}"
-    end
-
-    def sex
-      message[:PID].admin_sex ? 'Female' : 'Male'
-    end
-
-    def patient_data
-      @patient_name_data ||= message[:PID].patient_name.split("^")
-    end
-
     def sending_facility
       return '' unless message[:MSH]
       message[:MSH].sending_facility || ''
@@ -58,13 +42,17 @@ test, result, flag, units, reference interval
       obr_row_template(observation)
     end
 
+    def patient
+      @patient ||= HL7::Exporter::Patient.new(message[:PID])
+    end
+
     def data
       {
         sending_facility: sending_facility,
-        patient_name: patient_name,
-        patient_dob:  getDate(message[:PID].patient_dob),
-        nick_name:  nick_name,
-        sex: sex,
+        patient_name: patient.name,
+        patient_dob:  getDate(patient.dob),
+        nick_name:  patient.nick_name,
+        sex: patient.sex,
         test_results: test_results,
       }
     end
