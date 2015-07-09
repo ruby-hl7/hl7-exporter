@@ -1,11 +1,17 @@
 module HL7
   class Exporter::Csv < HL7::Exporter
+    attr_accessor :template
+
     def export
       template % data
     end
 
-    private
     def template
+      @template ||= default_template
+    end
+
+    private
+    def default_template
 %[Sending Facility: %{sending_facility}
 Name: %{patient_name}
 DOB: %{patient_dob}
@@ -22,8 +28,7 @@ test, result, flag, units, reference interval
     end
 
     def getDate(date)
-      date = Date.parse date
-      date.strftime("%Y/%m/%d")
+      Date.parse(date).strftime("%Y/%m/%d")
     end
 
     def sending_facility
