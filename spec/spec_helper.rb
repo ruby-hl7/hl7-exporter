@@ -1,8 +1,10 @@
 require 'rspec'
-require 'byebug'
 require 'ruby-hl7'
-require 'pry'
-require 'looksee'
+
+# Development gems
+# require 'byebug'
+# require 'pry'
+# require 'looksee'
 
 LOCALE_PATH = File.expand_path(File.dirname(__FILE__) + '/../lib/hl7')
 
