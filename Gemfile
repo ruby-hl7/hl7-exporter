@@ -5,9 +5,8 @@ gemspec
 
 gem 'ruby-hl7'
 
-group :development do
+group :ruby2 do
   gem 'byebug'
   gem 'pry'
   gem 'looksee'
 end
-
