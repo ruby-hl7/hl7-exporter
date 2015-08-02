@@ -32,6 +32,10 @@ cvs_exporter.export(message, template)
 # I'm also thinking about this one:
 json_exporter = HL7::Exporter::Json
 json_exporter.export(message)
+
+# Next goal after simple json is
+fhir_exporter = HL7::Exporter::Fhir
+fhir_exporter.export(message)
 ```
 
 ## Contributing
