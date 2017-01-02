@@ -10,16 +10,27 @@ describe HL7::Exporter::Csv do
 \rOBX|3|NM|011817^HDL Cholesterol^L^2085-9^Cholesterol.in HDL^LN||40|mg/dL|>39|||N|F|20020107||201312241053|01
 ]
   }
-  let(:hl7_meessage) { HL7::Message.parse(message) }
-  let(:exporter) { HL7::Exporter::Csv.new(hl7_meessage) }
+
+  let(:exporter) { HL7::Exporter::Csv.new(hl7_message) }
   subject(:csv) { exporter.export.split("\n") }
 
-  it { expect(csv[0]).to eq "Sending Facility: TEST_LAB_INC" }
-  it { expect(csv[1]).to eq "Name: FirstName LastName" }
-  it { expect(csv[2]).to eq "DOB: 1976/02/28"  }
-  it { expect(csv[3]).to eq "Nick: NickName"  }
-  it { expect(csv[4]).to eq "Sex: Female"  }
-  it { expect(csv[5]).to eq "test, result, flag, units, reference interval"  }
-  it { expect(csv[6]).to eq "Cholesterol Total, 232, H, mg/dL, 100-199" }
-  it { expect(csv[8]).to include "Cholesterol" }
+  context "with a full message" do
+    let(:hl7_message) { HL7::Message.parse(message) }
+
+    it { expect(csv[0]).to eq "Sending Facility: TEST_LAB_INC" }
+    it { expect(csv[1]).to eq "Name: FirstName LastName" }
+    it { expect(csv[2]).to eq "DOB: 1976/02/28"  }
+    it { expect(csv[3]).to eq "Nick: NickName"  }
+    it { expect(csv[4]).to eq "Sex: Female"  }
+    it { expect(csv[5]).to eq "test, result, flag, units, reference interval"  }
+    it { expect(csv[6]).to eq "Cholesterol Total, 232, H, mg/dL, 100-199" }
+    it { expect(csv[8]).to include "Cholesterol" }
+  end
+
+  context "with an empty message" do
+    let(:hl7_message) { "" }
+
+    it { expect { exporter.export }.to raise_error(HL7::ParseError)  }
+  end
+
 end
